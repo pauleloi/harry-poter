@@ -1,4 +1,9 @@
 
+const wikiharry = await fetch("https://hp-api.onrender.com/api/characters")
+    .then((response) => response.json())
+      .catch((error) => alert("Erreur : " + error));
+    console.log(wikiharry);
+
 let houses = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"];
 let container = document.querySelector(".houses");
 
@@ -7,7 +12,7 @@ for (const house of houses) {
   div.classList.add("house-item"); 
 
   div.addEventListener("click", () => {
-    console.log("test");
+    console.log("test maison");
     loadData(house);
   });
 
@@ -18,10 +23,10 @@ for (const house of houses) {
 }
 
 
-let characters = ["cho", "cedric"];
+
 let container2 = document.querySelector(".characters");
 
-for (const character of characters) {
+for (const character of wikiharry) {
   let div = document.createElement("div");
   div.classList.add("character-item"); 
 
@@ -31,7 +36,8 @@ for (const character of characters) {
   });
 
   div.innerHTML = `
-    <img src="./images/character/${character}.png" alt="${character} logo" />
+    <img src="./images/characters/${character}.webp" alt="${character} logo" />
+    <p>${character}</p>
   `;
 
   container2.appendChild(div);
